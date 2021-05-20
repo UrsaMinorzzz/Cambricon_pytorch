@@ -1,0 +1,53 @@
+﻿- name: yolov5_detection_output   // 算子名称
+
+use_mlu_dispatcher: custom     // 分发类型，unboxed_only为标准化算子，custom为客制化算子
+
+derived_type: cnml             // 派生类型
+
+schema_string: torch_mlu::yolov5_detection_output   // 用于算子注册  
+
+arguments:                     // 参数
+
+- name: alpha_data             // 参数名称  
+
+type: const at::Tensor &     // 参数类型
+
+- name: beta_data  
+
+type: const at::Tensor &
+
+- name: gamma_data  
+
+type: const at::Tensor &
+
+- name: anchor_data  
+
+type: torch::List<int64_t>
+
+- name: num_classes  
+
+type: int64_t
+
+- name: num_anchors  
+
+type: int64_t
+
+- name: img_height  
+
+type: int64_t
+
+- name: img_width  
+
+type: int64_t
+
+- name: conf_thres  
+
+type: double
+
+- name: nms_thres  
+
+type: double
+
+- name: maxBoxNum  
+
+type: int64_t return_type: at::Tensor     // 函数返回类型
